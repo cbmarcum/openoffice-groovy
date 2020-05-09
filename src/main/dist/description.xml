@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--***********************************************************************
+ *
+ * Copyright 2020 Code Builders, LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ ***********************************************************************-->
+
+
+<description xmlns="http://openoffice.org/extensions/description/2006"
+             xmlns:d="http://openoffice.org/extensions/description/2006"
+             xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <version value="${project.version}"/>
+
+    <identifier value="net.codebuilders.openoffice-groovy"/>
+
+    <platform value="all"/>
+
+    <dependencies>
+        <OpenOffice.org-minimal-version value="4.1" d:name="OpenOffice.org 4.1"/>
+    </dependencies>
+
+    <!-- update-information -->
+
+    <registration>
+        <simple-license accept-by="admin" suppress-on-update="false">
+            <license-text xlink:href="registration/LICENSE" lang="en-US"/>
+        </simple-license>
+    </registration>
+
+    <publisher>
+        <name xlink:href="http://codebuilders.net" lang="en">Code Builders, LLC</name>
+    </publisher>
+
+    <!-- release-notes -->
+
+    <display-name>
+        <name lang="en">Groovy Scripting for OpenOffice</name>
+    </display-name>
+
+    <icon>
+        <default xlink:href="images/groovy-icon.png"/>
+        <high-contrast xlink:href="images/groovy-icon.png"/>
+    </icon>
+
+    <extension-description>
+        <src xlink:href="description/description_en.txt" lang="en"/>
+    </extension-description>
+
+</description>

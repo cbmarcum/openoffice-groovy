@@ -1,0 +1,1 @@
+Groovy Scripting for OpenOffice is an extension to add Apache Groovy as a scripting language in Apache OpenOffice.
