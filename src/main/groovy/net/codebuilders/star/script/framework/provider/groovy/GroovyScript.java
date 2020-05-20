@@ -30,7 +30,7 @@ import com.sun.star.uno.Any;
 import com.sun.star.uno.Type;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
-
+import org.codehaus.groovy.control.CompilationFailedException;
 import java.net.URL;
 
 
@@ -66,12 +66,12 @@ public class GroovyScript implements XScript {
      * @returns The value returned from the function
      * being invoked
      */
-
     public Object invoke( /*IN*/Object[] aParams,
             /*OUT*/short[][] aOutParamIndex,
             /*OUT*/Object[][] aOutParam)
             throws ScriptFrameworkErrorException,
             InvocationTargetException {
+
         // Initialise the out parameters - not used at the moment
         aOutParamIndex[0] = new short[0];
         aOutParam[0] = new Object[0];
@@ -79,16 +79,20 @@ public class GroovyScript implements XScript {
 
         ClassLoader cl = null;
         URL sourceUrl = null;
+
         try {
             cl = ClassLoaderFactory.getURLClassLoader(scriptMetaData);
             sourceUrl = scriptMetaData.getSourceURL();
         } catch (java.net.MalformedURLException mfu) {
+            System.err.println("Caught java.net.MalformedURLException");
             // Framework error
             throw new ScriptFrameworkErrorException(
                     mfu.getMessage(), null,
                     scriptMetaData.getLanguageName(), scriptMetaData.getLanguage(),
                     ScriptFrameworkErrorType.MALFORMED_URL);
         } catch (NoSuitableClassLoaderException nsc) {
+            System.err.println("Caught NoSuitableClassLoaderException");
+
             // Framework error
             throw new ScriptFrameworkErrorException(
                     nsc.getMessage(), null,
@@ -98,10 +102,9 @@ public class GroovyScript implements XScript {
         // Set class loader to be used for class files
         // and jar files
         Thread.currentThread().setContextClassLoader(cl);
-        // Interpreter interpreter = new Interpreter();
 
         Binding binding = new Binding();
-        GroovyShell shell = new GroovyShell(cl, binding);
+        GroovyShell shell = new GroovyShell(binding);
 
         binding.setProperty("XSCRIPTCONTEXT", xScriptContext);
         binding.setProperty("ARGUMENTS", aParams);
@@ -118,8 +121,10 @@ public class GroovyScript implements XScript {
                 result = editor.execute();
 
                 if (result == null) {
+
                     return new Any(new Type(), null);
                 }
+
                 return result;
             }
 
@@ -127,21 +132,38 @@ public class GroovyScript implements XScript {
             source = scriptMetaData.getSource();
 
             if (source == null || source.length() == 0) {
+                System.err.println("Failed to read script. Script not found or empty");
                 throw new ScriptFrameworkErrorException(
-                        "Failed to read script", null,
+                        "Failed to read script. Script not found or empty", null,
                         scriptMetaData.getLanguageName(), scriptMetaData.getLanguage(),
                         ScriptFrameworkErrorType.NO_SUCH_SCRIPT);
             }
 
-            result = shell.evaluate(source);
+            // TODO: we should have an a framework exception type for this
+            try {
+                result = shell.evaluate(source);
+            } catch (CompilationFailedException e) {
+                System.err.println("Caught a CompilationFailedException");
+                e.printStackTrace();
+                throw new ScriptFrameworkErrorException(
+                        "Compilation Failed. Unknown Error", null,
+                        scriptMetaData.getLanguageName(), scriptMetaData.getLanguage(),
+                        ScriptFrameworkErrorType.UNKNOWN);
+            }
+
 
             if (result == null) {
+
                 return new Any(new Type(), null);
             }
+
             return result;
         } catch (Exception e) {
+            // DEBUG
+            System.out.println("Failed to read script. Unknown Error");
+
             throw new ScriptFrameworkErrorException(
-                    "Failed to read script", null,
+                    "Failed to read script. Unknown Error", null,
                     scriptMetaData.getLanguageName(), scriptMetaData.getLanguage(),
                     ScriptFrameworkErrorType.UNKNOWN);
         }

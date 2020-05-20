@@ -3,19 +3,25 @@
     these classes and the OpenOffice.org API, see the OpenOffice.org
     Developers Guide at:
 
-        http://api.openoffice.org/
+        https://wiki.openoffice.org/wiki/Documentation/DevGuide/OpenOffice.org_Developers_Guide
 
+    The Groovy UNO Extension adds convenience methods to the Java UNO apis.
+    Notably used here is adding the guno method to XInterface which replaces
+    the static UnoRuntime.queryInterface() method and the need to do a cast.
     Information on the Groovy UNO Extension can be found at:
 
         https://github.com/cbmarcum/guno-extension
 */
 
+// Hello World in Groovy
+
 import com.sun.star.frame.XModel
 import com.sun.star.text.XTextDocument
 import com.sun.star.text.XText
 import com.sun.star.text.XTextRange
-
 import org.openoffice.guno.UnoExtension // the Groovy UNO Extension
+// import com.sun.star.uno.UnoRuntime // not needed with Groovy UNO Extension
+
 
 /*
     Import XScriptContext class. An instance of this class is available
@@ -48,7 +54,6 @@ import org.openoffice.guno.UnoExtension // the Groovy UNO Extension
     Or statically typed and declared as:
     Integer x = 12
 
-
     For more information on the language see:
 
         http://groovy-lang.org/index.html
@@ -58,16 +63,25 @@ import org.openoffice.guno.UnoExtension // the Groovy UNO Extension
         http://groovy.apache.org/
  */
 
+// set the output text string
 String output = "Hello World (in Groovy)"
 
-XModel oDoc = XSCRIPTCONTEXT.getDocument()
+// get the document model from the scripting context which is made available to all scripts
+XModel xModel = XSCRIPTCONTEXT.getDocument()
 
-XTextDocument xTextDoc = oDoc.guno(XTextDocument.class)
+//get the XTextDocument interface
+// XTextDocument xTextDoc = (XTextDocument) UnoRuntime.queryInterface(XTextDocument.class, xModel) // without the Groovy UNO Extension
+XTextDocument xTextDoc = xModel.guno(XTextDocument.class) // with the Groovy UNO Extension
+
+//get the XText interface
 XText xText = xTextDoc.getText()
+
+// get an (empty) XTextRange at the end of the document
 XTextRange xTextRange = xText.getEnd()
 
-// xTextRange.setString( "Hello World (in Groovy)" )
-xTextRange.string = output
+// the next two lines are interchangable
+// xTextRange.setString( "Hello World (in Groovy)" ) // getter method
+xTextRange.string = output // looks like property access but uses the getter or setter transparently
 
 // Groovy OpenOffice scripts should always return 0
 return 0

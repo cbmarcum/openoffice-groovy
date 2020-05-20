@@ -82,9 +82,9 @@ public class ScriptSourceModel {
 
     public Object execute(final XScriptContext context, ClassLoader cl)
             throws Exception {
+
         Object result = null;
-        // Thread execThread = new Thread() {
-        // public void run() {
+
         if (cl != null) {
             /* sets this threads class loader hopefully any threads spawned by
             this will inherit this cl this enables any class files imported
@@ -111,9 +111,10 @@ public class ScriptSourceModel {
         } else {
             result = shell.evaluate(getText());
         }
-        // }
-        // };    
-        // execThread.start();
+
+        // DEBUG
+        System.out.println("result = " + result.toString());
+
         return result;
     }
 
