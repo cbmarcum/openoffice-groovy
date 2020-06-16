@@ -200,3 +200,27 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
+------------------------------------------------------------------------
+
+Hamcrest License (needed when using optional JUnit dependency)
+
+This product bundles the Hamcrest jar, which is available under a
+BSD license.  For details, see licenses/hamcrest-license.txt.
+
+------------------------------------------------------------------------
+
+JLine2 License (optional dependency used with groovysh)
+
+This product bundles the JLine2 jar, which is available under a
+BSD License.  For details, see licenses/jline2-license.txt.
+
+------------------------------------------------------------------------
+
+JUnit Licenses (optional dependencies when using Groovy for testing)
+
+This product bundles the JUnit 4 jar, which is available under the
+Eclipse Public License v1.0.  For details, see licenses/junit4-license.txt.
+
+This product bundles several JUnit 5 jars, which are available under the
+Eclipse Public License v2.0.  For details, see licenses/junit5-license.txt.
