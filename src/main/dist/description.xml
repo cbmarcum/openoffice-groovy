@@ -17,7 +17,6 @@
  *
  ***********************************************************************-->
 
-
 <description xmlns="http://openoffice.org/extensions/description/2006"
              xmlns:d="http://openoffice.org/extensions/description/2006"
              xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -51,8 +50,8 @@
     </display-name>
 
     <icon>
-        <default xlink:href="images/groovy-icon.png"/>
-        <high-contrast xlink:href="images/groovy-icon.png"/>
+        <default xlink:href="images/cblogo-42x42.png"/>
+        <high-contrast xlink:href="images/cblogo-42x42.png"/>
     </icon>
 
     <extension-description>
