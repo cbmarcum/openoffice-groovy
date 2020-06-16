@@ -67,7 +67,7 @@ dependencies {
 }
 
 
-version = '0.4.2'
+version = '0.5.0'
 
 jar {
     // archiveFileName = "openoffice-groovy.jar"
