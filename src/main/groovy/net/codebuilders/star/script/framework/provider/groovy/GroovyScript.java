@@ -139,14 +139,12 @@ public class GroovyScript implements XScript {
                         ScriptFrameworkErrorType.NO_SUCH_SCRIPT);
             }
 
-            // TODO: we should have an a framework exception type for this
             try {
                 result = shell.evaluate(source);
             } catch (CompilationFailedException e) {
                 System.err.println("Caught a CompilationFailedException");
-                e.printStackTrace();
                 throw new ScriptFrameworkErrorException(
-                        "Compilation Failed. Unknown Error", null,
+                        e.getMessage(), null,
                         scriptMetaData.getLanguageName(), scriptMetaData.getLanguage(),
                         ScriptFrameworkErrorType.UNKNOWN);
             }

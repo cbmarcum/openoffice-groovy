@@ -80,7 +80,6 @@ public class ScriptProviderForGroovy {
 
     // NOTE: dev guide was unclear here. The implementation string needs the full java package included.
     // also note the services follow a naming convention not the package names.
-    // TODO: we may need to add a com.sun.star.script.browse.BrowseNode service later.
     public static boolean __writeRegistryServiceInfo(XRegistryKey regKey) {
         String impl =
                 "net.codebuilders.star.script.framework.provider.groovy.ScriptProviderForGroovy$_ScriptProviderForGroovy";
