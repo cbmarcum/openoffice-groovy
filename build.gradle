@@ -49,7 +49,7 @@ repositories {
 dependencies {
     // Use the latest Groovy version for building this library
     implementation 'org.codehaus.groovy:groovy-all:3.0.4'
-    implementation("net.codebuilders:guno-extension:4.1.6.12") {
+    implementation("net.codebuilders:guno-extension:4.1.6.13") {
         transitive = false
     }
 
@@ -67,7 +67,7 @@ dependencies {
 }
 
 
-version = '0.5.0'
+version = '0.5.1'
 
 jar {
     // archiveFileName = "openoffice-groovy.jar"
