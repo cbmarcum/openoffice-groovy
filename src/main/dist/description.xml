@@ -50,8 +50,8 @@
     </display-name>
 
     <icon>
-        <default xlink:href="images/cblogo-42x42.png"/>
-        <high-contrast xlink:href="images/cblogo-42x42.png"/>
+        <default xlink:href="images/groovy-icon-42x42.png"/>
+        <high-contrast xlink:href="images/groovy-icon-42x42.png"/>
     </icon>
 
     <extension-description>
