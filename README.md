@@ -1,4 +1,4 @@
-# openoffice-groovy
+# Groovy Scripting for OpenOffice
 An Apache OpenOffice extension to add the Apache Groovy language to the Scripting Framework
 
 The build artifact of this project is an OXT file that is an OpenOffice extension that is installed into the office using 
